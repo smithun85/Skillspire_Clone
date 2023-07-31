@@ -1,0 +1,26 @@
+
+
+<div class="container">
+    <form  class="form-container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+    </div>
+
+    <div class="mb-3">
+        <input type="password" class="form-control" placeholder="enter password" formControlName="password">
+     </div>
+     
+  
+      <div class="button">
+        <button type="submit" class="btn btn-primary">Login</button>
+        <a [routerLink]="['forget-password']">Forget Password</a>
+      </div>
+    </form>
+  
+  
+    <div class="registration">
+      <a [routerLink]="['reset-password']">Reset password</a> 
+      <a [routerLink]="['signup']">Go To SignUp</a>  
+    </div>
+  
+  </div>

@@ -1,0 +1,32 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px 10px  #dbd8d8;
+};
+
+
+.btn{
+    padding:10px 50px;
+}
+
+.button{
+    display: flex;
+    justify-content: space-between;
+}
+
+.registration{
+   margin-top: 20px;
+   margin-left: 350px;
+}

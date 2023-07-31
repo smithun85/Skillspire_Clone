@@ -1,0 +1,124 @@
+<div class="container">
+  <div>
+    <h2>signup</h2>
+  </div>
+  <form class="form-container" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <input
+        type="type"
+        class="form-control"
+        placeholder="First name"
+        formControlName="firstName"
+      />
+    </div>
+    <div
+      *ngIf="
+        signup.firstName?.invalid &&
+        (signup.firstName?.dirty || signup.firstName?.touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="signup.firstName.errors?.['required']">
+        First name must be required.
+      </span>
+      <span *ngIf="signup.firstName.errors?.['minlength']"> 
+        First name more than 2 letters
+      </span>
+      <span *ngIf="signup.firstName.errors?.['maxlength']">
+        First Name less than 25 letters
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <input
+        type="type"
+        class="form-control"
+        placeholder="Last name"
+        formControlName="lastName"
+      />
+    </div>
+    <div
+      *ngIf="
+        signup.lastName?.invalid &&
+        (signup.lastName?.dirty || signup.lastName?.touched)
+      "
+      class="alert alert-danger"
+    >
+      <span *ngIf="signup.lastName.errors?.['required']">
+        last name must be required.
+      </span>
+      <span> </span>
+    </div>
+    <div class="mb-3">
+      <input
+        type="email"
+        class="form-control"
+        placeholder="email"
+        formControlName="email"
+      />
+    </div>
+    <div
+    *ngIf="
+      signup.email?.invalid &&
+      (signup.email?.dirty || signup.email?.touched)
+    "
+    class="alert alert-danger"
+  >
+    <span *ngIf="signup.email.errors?.['required']">
+      email must be required.
+    </span>
+    <span> </span>
+  </div>
+
+    <div class="mb-3">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="password"
+        formControlName="password"
+      />
+    </div>
+    <div
+    *ngIf="
+      signup.password?.invalid &&
+      (signup.password?.dirty || signup.password?.touched)
+    "
+    class="alert alert-danger"
+  >
+    <span *ngIf="signup.password.errors?.['required']">
+      password field must be required.
+    </span>
+    <span> </span>
+  </div>
+
+    <div class="mb-3">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="confirm password"
+        formControlName="confirm_Password"
+      />
+    </div>
+    <div
+    *ngIf="
+      signup.confirm_Password.invalid &&
+      (signup.confirm_Password.dirty || signup.confirm_Password.touched)
+    "
+    class="alert alert-danger"
+  >
+    <span *ngIf="signup.confirm_Password.errors?.['required']">
+      password field must be required.
+    </span>
+    <span *ngIf="signup.confirm_Password.errors?.['passwordMismatch']">
+      password and conform_password must be matched </span>
+  </div>
+
+    <div class="button">
+      <button type="submit" class="btn btn-primary">signup</button>
+    </div>
+  </form>
+
+  <div class="registration">
+    <a (click)="gotoLogin()">Go To Login Page</a>
+  </div>
+</div>
