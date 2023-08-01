@@ -5,22 +5,32 @@
     <div class="mb-3">
         <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
     </div>
+    <div class="alert alert-danger" *ngIf="login.email.invalid && (login.email.dirty || login.email.touched)">
+      <span *ngIf="login.email.errors?.['required']">Email must be required</span>
+      <span *ngIf="login.email.errors?.['email']">Email is not valid</span>
+    </div>
 
     <div class="mb-3">
-        <input type="password" class="form-control" placeholder="enter password" formControlName="password">
+        <input type="password" class="form-control" placeholder="enter password" autocomplete="off" formControlName="password">
      </div>
+     <div class="alert alert-danger" *ngIf="login.password.invalid && (login.password.dirty || login.password.touched)">
+      <span *ngIf="login.password.errors?.['required']">password must be required</span>
+      <span *ngIf="login.password.errors?.['minlength']">Paaword length must be greater than 5</span>
+    </div>
      
   
       <div class="button">
         <button type="submit" class="btn btn-primary">Login</button>
-        <a [routerLink]="['forget-password']">Forget Password</a>
+        <!-- <a [routerLink]="['forget-password']">Forget Password</a> -->
+        <a  (click)="openForgetPassword()">Forget Password</a>
       </div>
     </form>
   
   
     <div class="registration">
-      <a [routerLink]="['reset-password']">Reset password</a> 
-      <a [routerLink]="['signup']">Go To SignUp</a>  
+      <a (click)="openResetPassword()">Reset password</a> 
+      <a (click)="openSignupComponent()">Go To SignUp</a>  
+      <!-- <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">Go To SignUp</button> -->
     </div>
   
   </div>

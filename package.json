@@ -22,6 +22,7 @@
     "bootstrap": "^5.1.3",
     "ngx-bootstrap": "^10.2.0",
     "rxjs": "~7.8.0",
+    "schematics-scss-migrate": "^2.3.17",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
