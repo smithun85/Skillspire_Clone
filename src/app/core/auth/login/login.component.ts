@@ -14,13 +14,14 @@ import { ForgetPasswordComponent } from '../forget-password/forget-password.comp
 })
 export class LoginComponent implements OnInit {
 
-  bsModalRef?: BsModalRef;
+  title:string = 'Login'
   loginForm:FormGroup | any
 
  constructor(
   private router:Router,
   private login_post:AuthService,
-  private modalService: BsModalService
+  public bsModalRef: BsModalRef,
+  private modalService: BsModalService,
  ){};
 
  ngOnInit(): void {

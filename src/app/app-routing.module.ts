@@ -6,30 +6,38 @@ import { DashboardLayoutComponent } from './core/layouts/dashboard-layout/dashbo
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'auth',
-    pathMatch:'full'
+    component:DashboardLayoutComponent,
+    children:[
+      {
+        path:'',
+        loadChildren:()=>import('./core/dashboard/dashboard.module').then(m=>m.DashboardModule)
+      },
+     {
+      path:'programs',
+      loadChildren:()=>import('./core/programs/programs.module').then(m=>m.ProgramsModule)
+     },
+     {
+      path:'trainers',
+      loadChildren:()=>import('./core/trainers/trainers.module').then(m=>m.TrainersModule)
+     },
+     {
+      path:'jobs',
+      loadChildren:()=>import('./core/jobs/jobs.module').then(m=>m.JobsModule)
+     },
+     {
+      path:'blogs',
+      loadChildren:()=>import('./core/blogs/blogs.module').then(m=>m.BlogsModule)
+     },
+
+    ]
+
   },
   {
     path:'auth',
     component:AuthLayoutComponent,
     loadChildren: ()=> import('./core/auth/auth.module').then(m=>m.authModule)
   },
-  {
-    path:'',
-    component:DashboardLayoutComponent,
-    children:[
-      {
-        path:'dashboard',
-        loadChildren:()=>import('./core/dashboard/dashboard.module').then(m=>m.DashboardModule)
-      },
-      // {
-      //   path:'booking',
-      //   component:xyz,
-      //   loadChildren:()=>import('./')
-      // }
-    ]
-
-  }
+  
 ];
 
 @NgModule({

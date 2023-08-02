@@ -5,14 +5,14 @@ import { DashboardRoutingModule } from './dashboard-routing';
 
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
   ],
-  exports:[DashboardComponent]  //this component use in another module so must be export the component
 })
 export class DashboardModule { }

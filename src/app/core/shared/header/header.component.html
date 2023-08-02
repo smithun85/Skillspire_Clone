@@ -1,12 +1,63 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">MyHotelBooking</a>
+ <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+      <img src="../../../../assets/images/logo.png" alt="">
+    </a>
    
    <div class="right-nav">
-    <div class="profile">
-      <p class="nav-link " style="color:lightgray;">Raj Singh</p>
-    </div>
+<!-- 
+   
+
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" style="color:lightgray;" [routerLink]="['auth']">Sign out</a>
-    </div>    
+     
+    </div>  
+    <div class="nav-item text-nowrap">
+     
+    </div>  
+    <div class="nav-item text-nowrap">
+     
+    </div>  
+    <div class="nav-item text-nowrap">
+     
+    </div>  
+ 
+    <div >
+      
+    </div>  
+    <div>
+      
+    </div>     -->
+    <nav class="navbar navbar-expand-lg nav-right">
+      <div class="container-fluid">       
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li routerlinkactive="active" class="nav-item" >
+              <a class="nav-link" aria-current="page" [routerLink]="['']">HOME</a>
+            </li>
+            <li routerlinkactive="active" class="nav-item" >
+              <a class="nav-link px-3" [routerLink]="['programs']">PROGRAMS</a>
+            </li>
+            <li routerlinkactive="active" class="nav-item" >
+              <a class="nav-link px-3" [routerLink]="['trainers']">TRAINERS</a>
+            </li>
+            <li routerlinkactive="active" class="nav-item" >
+              <a class="nav-link px-3" [routerLink]="['jobs']">JOBS</a>
+            </li>
+            <li routerlinkactive="active" class="nav-item" >
+              <a class="nav-link px-3"  [routerLink]="['blogs']">BLOGS</a>
+            </li>
+            <li class="nav-item button">            
+              <button type="button" class="btn btn-outline-primary login-btn" (click)="openLoginComponent()">LOGIN</button>
+              <button class="btn btn-primary signup-btn"  (click)="openSignupComponent()">SIGN UP</button>             
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
    </div>
-  </header>
+  </header> 
+
+  

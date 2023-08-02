@@ -10,14 +10,11 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './core/shared/sidebar/sidebar.component';
 import { HeaderComponent } from './core/shared/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { DashboardModule } from './core/dashboard/dashboard.module';
 //http for server;
 import { HttpClientModule } from '@angular/common/http';
-
 //dialogs:
 import { ModalModule } from 'ngx-bootstrap/modal';
-
-
+// user defined modules
 
 @NgModule({
   declarations: [
@@ -34,8 +31,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     RouterModule,
     HttpClientModule,
     FontAwesomeModule,
-    DashboardModule, //DashboardComponent use in this module Component SidebarComponnent so must be import that module,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+
 
   ],
   providers: [],
