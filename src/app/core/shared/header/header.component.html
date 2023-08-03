@@ -1,0 +1,42 @@
+ <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow nav">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+      <img class="image" src="../../../../assets/images/logo.png" alt="logo">
+    </a>
+   
+   <div class="right-nav">
+    <nav class="navbar navbar-expand-lg nav-right">
+      <div class="container-fluid">       
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li  class="nav-item" >
+              <a class="nav-link" [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+                true}">HOME</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link px-3" [routerLink]="['programs']" [routerLinkActive]="['active']">PROGRAMS</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link px-3" [routerLink]="['trainers']" [routerLinkActive]="['active']">TRAINERS</a>
+            </li>
+            <li class="nav-item" >
+              <a class="nav-link px-3" [routerLink]="['jobs']" [routerLinkActive]="['active']">JOBS</a>
+            </li>
+            <li  class="nav-item" >
+              <a class="nav-link px-3"  [routerLink]="['blogs']" [routerLinkActive]="['active']">BLOGS</a>
+            </li>
+            <li class="nav-item button">            
+              <button type="button" class="btn btn-outline-primary login-btn" (click)="openLoginComponent()">LOGIN</button>
+              <button class="btn btn-primary signup-btn"  (click)="openSignupComponent()">SIGN UP</button>             
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+   </div>
+  </header> 
+
+  
