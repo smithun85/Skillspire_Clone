@@ -7,21 +7,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './core/layouts/dashboard-layout/dashboard-layout.component';
 import { RouterModule } from '@angular/router';
-import { SidebarComponent } from './core/shared/sidebar/sidebar.component';
+import { FooterComponent } from './core/shared/footer/footer.component';
 import { HeaderComponent } from './core/shared/header/header.component';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 //http for server;
 import { HttpClientModule } from '@angular/common/http';
 //dialogs:
 import { ModalModule } from 'ngx-bootstrap/modal';
-// user defined modules
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthLayoutComponent,
     DashboardLayoutComponent,
-    SidebarComponent,
+    FooterComponent,
     HeaderComponent,
   ],
   imports: [
@@ -32,6 +34,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     FontAwesomeModule,
     ModalModule.forRoot(),
+
 
 
   ],
