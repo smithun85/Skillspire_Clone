@@ -217,137 +217,58 @@
           [isAnimated]="true"
           class=""
         >
-          <div>
-            <div class="lead">
-              <slide  style="display: block; width: 100%;">   
-                <a href="">All</a>
-              </slide>
-            </div>
-          </div>
+
+        <div class="lead all">
+          <slide  style="display: block; width: 100%;">   
+            <button type="button" (click)="allShow()">All</button>
+          </slide>
+        </div>
+         
           <div class="lead">
             <slide style="display: block; width: 100%;">
-              <a href="">Personal Development</a>
+              <button type="button" (click)="personalShow()">Personal Development</button>
             </slide>
           </div>
           <div class="lead">
             <slide style="display: block; width: 100%;">
-              <a href="">Professional Development</a>
+              <button type="button" (click)="ProfessionalShow()">Professional Development</button>
             </slide>
           </div>
           <div class="lead">
             <slide style="display: block; width: 100%;" >   
-              <a href="">Finance</a>
+              <button type="button" (click)="FinanceShow()">Finance</button>
             </slide>
           </div>
           <div class="lead">
             <slide style="display: block; width: 100%;" >   
-              <a href="">Writing</a>
+              <button type="button" (click)="writingShow()">Writing</button>
             </slide>
           </div>
+         
 
         </carousel>
       </div>
-      <carousel>
-        <slide>
-          <div class="text-white">
-            <div class="lead contents">
-              <h2>Single Subscription, Multiple Courses</h2>
-              <p class="">
-                Just pay a small amount every month and explore multiple courses
-                across various domains with a lot of exciting content.
-              </p>
-              <button
-                type="button"
-                class="btn btn-warning"
-                (click)="openSignupComponent()"
-              >
-                Register Now
-              </button>
-            </div>
-          </div>
-        </slide>
-  
-        <slide>
-          <div class="text-white">
-            <div class="lead contents">
-              <h2>Learn from Industry Experts</h2>
-              <p class="">
-                The fun in learning with an Industry expert is you get to know a
-                lot of industry practices, ongoing trends etc.
-              </p>
-              <button
-                type="button"
-                class="btn btn-warning"
-                (click)="openSignupComponent()"
-                tabindex="0"
-              >
-                Register Now
-              </button>
-            </div>
-          </div>
-        </slide>
-  
-        <slide>
-          <div class="text-white">
-            <div class="lead contents">
-              <h2>Build your profile and create a strong track record</h2>
-              <p class="">
-                Along with training, build your profile on skillspire and create a
-                strong track record. This will help you get a job &amp;
-                internships.
-              </p>
-              <button
-                type="button"
-                class="btn btn-warning"
-                (click)="openSignupComponent()"
-              >
-                Register Now
-              </button>
-            </div>
-          </div>
-        </slide>
-  
-        <slide>
-          <div class="text-white">
-            <div class="lead contents">
-              <h2>Learn Industry Skills, get Internships &amp; Jobs</h2>
-              <p class="">
-                There is a big gap between industry &amp; academics. Learning
-                industry oriented skills by industry experts makes you ready for
-                industry.
-              </p>
-              <button
-                type="button"
-                class="btn btn-warning"
-                (click)="openSignupComponent()"
-              >
-                Register Now
-              </button>
-            </div>
-          </div>
-        </slide>
-  
-        <slide>
-          <div class="text-white">
-            <div class="lead contents">
-              <h2>Become a part of a strong community</h2>
-              <p class="">
-                When you are a part of a community which is driven by a strong
-                purpose, your learning gets on an auto mode. You can share new
-                ideas, learn better practices from other students.
-              </p>
-              <button
-                type="button"
-                class="btn btn-warning"
-                (click)="openSignupComponent()"
-                tabindex="0"
-              >
-                Register Now
-              </button>
-            </div>
-          </div>
-        </slide>
-      </carousel>
+
+      <div *ngIf="isAll">
+        <app-all></app-all>
+      </div>
+    
+    <div *ngIf="isPersonal">
+      <app-personal-development></app-personal-development>
+    </div>
+    <div *ngIf="isProfessional">
+      <app-professional-development></app-professional-development>
+    </div>
+    <div *ngIf="isFinance">
+      <app-finance></app-finance>
+    </div>
+    <div *ngIf="isWriting">
+      <app-writing></app-writing>
+    </div>
+     
+    
+    
+     
     </div>
     <div class="row align-items-center">
       <div class="col-xl-12 col-lg-12">

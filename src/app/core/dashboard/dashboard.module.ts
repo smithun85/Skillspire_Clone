@@ -7,12 +7,22 @@ import { DashboardRoutingModule } from './dashboard-routing';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AllComponent } from './all/all.component';
+import { PersonalDevelopmentComponent } from './personal-development/personal-development.component';
+import { ProfessionalDevelopmentComponent } from './professional-development/professional-development.component';
+import { FinanceComponent } from './finance/finance.component';
+import { WritingComponent } from './writing/writing.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    AllComponent,
+    PersonalDevelopmentComponent,
+    ProfessionalDevelopmentComponent,
+    FinanceComponent,
+    WritingComponent
   ],
   imports: [
     CommonModule,

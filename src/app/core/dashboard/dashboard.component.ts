@@ -16,6 +16,12 @@ export class DashboardComponent implements OnInit {
   itemsPerSlide = 3;
   singleSlideOffset = true;
 
+  isAll:boolean = true
+  isPersonal:boolean = false
+  isProfessional:boolean = false
+  isFinance:boolean = false
+  isWriting:boolean = false
+
   constructor(
     private modalService: BsModalService,
     private skillsService : SkillsService,
@@ -54,8 +60,46 @@ export class DashboardComponent implements OnInit {
 
 
 openSignupComponent(){
-  this.bsModalRef = this.modalService.show(SignupComponent);
+  this.bsModalRef = this.modalService.show(SignupComponent);  
+}
 
-  
+// section-3
+allShow(){
+  this.isAll = true;
+  this.isPersonal = false
+  this.isProfessional=false
+  this.isFinance = false
+  this.isWriting = false
+};
+
+personalShow(){
+  this.isPersonal = true
+  this.isAll = false;
+  this.isProfessional=false
+  this.isFinance = false
+  this.isWriting = false
+}
+
+ProfessionalShow(){
+this.isProfessional=true
+this.isAll = false;
+this.isPersonal = false
+this.isFinance = false
+this.isWriting = false
+};
+FinanceShow(){
+  this.isFinance = true
+  this.isAll = false;
+  this.isPersonal = false
+  this.isProfessional=false
+  this.isWriting = false
+};
+
+writingShow(){
+  this.isWriting = true
+  this.isAll = false;
+  this.isPersonal = false
+  this.isProfessional=false
+  this.isFinance = false
 }
 }
