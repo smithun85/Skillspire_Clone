@@ -1,0 +1,23 @@
+footer {
+    background: #00b6f0;
+    padding: 60px 0 20px;
+    color: #fff;
+}
+
+.media {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+}
+.media img{
+    padding-top: 5px;
+}
+
+ a{
+    color: white;
+    text-decoration: none;
+}
+.underline-css{
+    border-bottom: 2px solid white;
+}
