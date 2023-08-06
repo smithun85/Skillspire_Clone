@@ -1,1 +1,33 @@
-<p>trainers works!</p>
+
+
+
+<section class="pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6"   *ngFor="let trainers of trainers_data">
+                <div class="trainers-block mb-0">
+                    <div class="position-relative">
+                        <img alt="trainers" class="img-fluid mx-auto d-block" [src]="trainers.photo" >
+                    </div>
+                </div>
+                <div class="trainers-block shadow-none">
+                    <h3 class="mb-0 trainers-name">{{trainers.name}}</h3>
+                    <p class="position mb-2"> {{trainers.designation}} </p>
+                    <p class="mb-1 experiance font-weight-700"> Experience <span>{{trainers.industry_exp}}</span></p>
+                    <p class="text-justify mb-2"> {{trainers.short_bio.substring(0,130)}}...</p><a
+                     class="mb-2 mt-0 d-block read-more-text" (click)="popup_Open(trainers.name,trainers.designation,trainers.short_bio)" routerLink="trainers">Read more...</a>
+                    <div class="row b-color m-0">
+                        <div><span
+                                class="mb-0 font-weight-700">Expertise</span><br><span
+                             class="mb-0">Option Trading</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-xl-12 col-lg-12">
+                <button type="button" class="btn btn-primary register-now" (click)="onNextPageClick()"> View more</button>
+            </div>
+        </div>
+    </div>
+</section>

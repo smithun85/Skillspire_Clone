@@ -1,0 +1,52 @@
+  let slideConfig = {
+    "slidesToShow": 4,
+     "slidesToScroll": 4,
+     "autoplay":true,
+     "autoplaySpeed":5000,
+     "pauseOnHower":true,
+     "infinite":true,
+     "responsive":[
+        {
+            "breakpoint":999,
+            "setting":{
+                "arrows":true,
+                "infinite":true,
+                "slidesToShow": 3,
+                "slidesToScroll": 4,
+                "dots" : true, 
+                "autoplay" : true,
+                "autoplaySpeed" : 3000,
+                "showArrow" : true,              
+                "pauseOnHower":true,
+                "centerMode": true, 
+                "variableWidth": true,
+               // "prevArrow": "<button type='button' class='slick-prev pull-left'><span class='fa fa-chevron-left'></span></button>",
+                 // "nextArrow": "<button type='button' class='slick-next pull-right'><span class='fa fa-chevron-right'></span></button>",
+               
+
+            }          
+        },
+        {
+            "breakpoint":799,
+            "setting":{
+                "arrows":true,
+                "infinite":true,
+                "slidesToShow": 1,
+                "slidesToScroll": 4,
+            }          
+        },    
+     ]
+    };
+
+    import { SlickCarouselComponent } from "ngx-slick-carousel";
+ // @ViewChild('slickModal', { static: true }) slickModal: SlickCarouselComponent | any;
+    button
+  //  <button class="btn-next" (click)="next()">next</button>
+  // <button class="btn-prev" (click)="prev()">prev</button>
+
+    // next() {
+  //   this.slickModal.slickNext();
+  // }
+  // prev() {
+  //   this.slickModal.slickPrev();
+  // }

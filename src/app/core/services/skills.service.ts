@@ -1,17 +1,23 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-
+import { SKILLS } from "../models/skills.model";
 @Injectable({providedIn:"root"})
 
 export class SkillsService {
+    // Request URL: https://api.skillspire.in/api/trainer/?sortBy=reverse:created_at&limit=6&page=1
     // url:string ='https://api.skillspire.in/api/trainer/?sortBy=reverse:created_at&popular=1'
+
     url:string = 'https://api.skillspire.in/api'
     constructor(private http:HttpClient){}
 
-    getTrainerdata():Observable<any>{
+    getTrainerdata(){
         return this.http.get(`${this.url}/trainer`, {params:{'sortBy':'reverse:created_at','popular':1}})
     };
+
+    getTrainesrdata(page:number){
+        return this.http.get(`${this.url}/trainer`, {params:{'sortBy':'reverse:created_at','limit':6 ,'page':page}})
+    }
 
     getTestimonialsData(){
         const url = 'https://api.skillspire.in/api/testimonial/?sortBy=reverse:created_at&limit=100&popular=1'
@@ -23,12 +29,24 @@ export class SkillsService {
     };
 
     getProgramsCategoryData(){
-        // 'https://api.skillspire.in/api/program/categories/?popular=1'
         return this.http.get(`${this.url}/program/categories`,{params:{"popular":1}})
     };
 
-    // https://api.skillspire.in/api/program/?sortBy=reverse:created_at&limit=6&page=1&popular=1
-    getProgramsListsData(){
-        return this.http.get('https://api.skillspire.in/api/program/?sortBy=reverse:created_at&limit=6&page=1&popular=1')
+    getProgramsAllListsData(){
+        return this.http.get(`${this.url}/program`, {params:{'sortBy':'reverse:created_at','limit':6,'page':1,'popular':1}})
+    };
+
+    getCategoryPersonalDev(){
+        return this.http.get(`${this.url}/program`, {params:{'sortBy':'reverse:created_at','limit':6,'page':1,'popular':1, 'categories':'personal-development' }})
+    };
+
+    getCategoryProfessionalDev(){
+        return this.http.get(`${this.url}/program`, {params:{'sortBy':'reverse:created_at','limit':6,'page':1,'popular':1, 'categories':'professional-development'}})
+    };
+    getCategoryFinanceDev(){
+        return this.http.get(`${this.url}/program`, {params:{'sortBy':'reverse:created_at','limit':6,'page':1,'popular':1, 'categories':'finance'}})
+    };
+    getCategoryWritingDev(){
+        return this.http.get(`${this.url}/program`, {params:{'sortBy':'reverse:created_at','limit':6,'page':1,'popular':1, 'categories':'writing'}})
     }
 }

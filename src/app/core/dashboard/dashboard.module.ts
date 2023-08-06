@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing';
 //  carousel-library
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +13,7 @@ import { PersonalDevelopmentComponent } from './personal-development/personal-de
 import { ProfessionalDevelopmentComponent } from './professional-development/professional-development.component';
 import { FinanceComponent } from './finance/finance.component';
 import { WritingComponent } from './writing/writing.component';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 
 
@@ -22,7 +24,8 @@ import { WritingComponent } from './writing/writing.component';
     PersonalDevelopmentComponent,
     ProfessionalDevelopmentComponent,
     FinanceComponent,
-    WritingComponent
+    WritingComponent,
+    PopUpComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,9 @@ import { WritingComponent } from './writing/writing.component';
     ReactiveFormsModule,
     DashboardRoutingModule,
     CarouselModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    SlickCarouselModule,
+
 
   ],
 })
