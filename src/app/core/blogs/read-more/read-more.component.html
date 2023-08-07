@@ -1,1 +1,11 @@
-<p>read-more works!</p>
+<section  class="blog-details">
+    <div  class="container">  
+        <p  class="date">by {{blog.author}} | {{blog.date}}</p>
+        <h2  class="blog-detail-title">{{blog.title}}</h2> 
+            <div  class="blog ">              
+                <img alt="blog-main" class="blog-image" [src]="blog.photo">
+                <h4 >{{blog.seo_description}}</h4>               
+            </div>
+            <p [innerHTML]="blog.description" class="blog-desc"></p>
+    </div>
+</section>

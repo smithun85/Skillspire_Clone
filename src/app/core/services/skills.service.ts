@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { SKILLS } from "../models/skills.model";
 @Injectable({providedIn:"root"})
 
 export class SkillsService {
@@ -30,6 +29,9 @@ export class SkillsService {
 
     getblogs(limit:number, page:number){
         return this.http.get(`${this.url}/blog`, {params:{'sortBy':'reverse:date','limit':limit,'page':page}})
+    };
+    getBlogDetails(id:any){
+        return this.http.get(`${this.url}/blog/${id}`)
     }
 
     getProgramsCategoryData(){
@@ -58,15 +60,43 @@ export class SkillsService {
         return this.http.get(`${this.url}/job/cities`)
     }
 
-    // //api.skillspire.in/api/job?limit=6&page=1&sortBy=reverse:created_at&city=Gandhinagar&search=er
-    // searchJobByTitle(title:string){
-    //     return this.http.get(`${this.url}/job`, {params:{ 'limit':6, 'page':1, 'sortBy':'reverse:created_at','search':title}})
-    // };
-    // searchJobByCity(city:string){
-    //     return this.http.get(`${this.url}/job`, {params:{ 'limit':6, 'page':1, 'sortBy':'reverse:created_at' ,'city':city}})
-    // }
-    searchJob(city:string,title:string){
-        return this.http.get(`${this.url}/job` , {params:{ 'limit':6, 'page':1, 'sortBy':'reverse:created_at' ,'city':city ,'search':title}})
+    //api.skillspire.in/api/job?limit=6&page=1&sortBy=reverse:created_at&city=Gandhinagar&search=er
+    searchSuggestionByTitle(title:string){
+        return this.http.get(`${this.url}/job/search-suggestion`, {params:{'search':title}})
+    };
+   
+    searchJob(title:string, city:string){
+        let queryParams = {}
+        if(title =='' && city ==''){
+            queryParams = {
+                'limit':6, 
+                'page':1, 
+                'sortBy':'reverse:created_at' ,
+            }
+        }else if(title  && city ==''){
+            queryParams = {
+                'limit':6, 
+                'page':1, 
+                'sortBy':'reverse:created_at' ,
+                'search':title
+            }
+        }else if(title =='' && city ){
+            queryParams = {
+                'limit':6, 
+                'page':1, 
+                'sortBy':'reverse:created_at' ,
+                'city':city ,
+            }
+        }else{
+            queryParams = {
+            'limit':6, 
+            'page':1, 
+            'sortBy':'reverse:created_at' ,
+            'city':city ,
+            'search':title
+        }
+        }
+        return this.http.get(`${this.url}/job` , { params:queryParams })
     }
 
 

@@ -1,0 +1,37 @@
+.blog-details{
+    margin: 50px;
+};
+
+.blog-details .container .blog{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 30px;
+};
+
+.date{
+    color: black;
+    font-size: 18px;
+}
+.blog-detail-title{
+ color: #00b6f0;
+ margin-top: -20px;
+ margin-bottom: 20px;
+}
+.blog-image{
+    width: 700px;
+    height: 400px;
+};
+h4{
+    font-size: 18px;
+    color: black;
+    text-align: justify;
+    line-height: 1.5;
+};
+.blog-desc{
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgb(67, 67, 67);
+    text-align: justify;
+}

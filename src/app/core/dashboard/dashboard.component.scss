@@ -5,7 +5,7 @@
 // //   // background: rgb(14, 13, 13);
 //  };
 
- .slick-slide {
+.slick-slide {
   background-color: #fff;
   border-radius: 10px;
   margin: 0 10px;
@@ -398,7 +398,33 @@ margin-bottom: -1px;
 
 .blogs .blog-content{
   color: #00b6f0;
+};
+
+.ready-section{
+  margin: 50px 60px 50px 50px;
+};
+.ready-section h2{
+  padding-bottom: 20px;
+  text-align: justify 
+};
+
+.ready-contents{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ gap: 100px;
+};
+
+
+
+.register-now button{
+  padding:15px 50px;
+  background-color: #00b6f0;
+  border-color: #00b6f0;
 }
-
-
-
+.register-now button:hover{
+  padding:15px 50px;
+  background-color: #fff;
+  color:#00b6f0
+  
+}

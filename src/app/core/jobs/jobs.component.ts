@@ -11,8 +11,9 @@ export class JobsComponent implements OnInit {
 
   cities:any[]=[];
   JobSearch_Form:FormGroup | any;
-  title:FormControl | any;
-  city:FormControl | any;
+  title:string = '';
+  city:string = '';
+  isSubmitted:boolean = false
   constructor(
     private skillsService : SkillsService
   ){};
@@ -34,23 +35,27 @@ export class JobsComponent implements OnInit {
 
   getJobByTitle(e:any){
     this.title = e.target.value;
-    this.skillsService.searchJob(this.title, this.city).subscribe( (res:any)=>{
+    this.skillsService.searchSuggestionByTitle(this.title).subscribe( (res:any)=>{
       console.log(res);
     });
   };
+
   getJobByCity(e:any){
-    this.city = e.target.value
+    this.city = e.target.value;
+    console.log(this.city);
+   this.getJobSearch(this.title, this.city);
+  };
+
+  getJobSearch(title:string, city:string){
     this.skillsService.searchJob(this.title, this.city).subscribe( (res:any)=>{
       console.log(res);
     });
   };
-  getJobSearch(title:string, city:string){
-    this.skillsService.searchJob(title, city).subscribe( (res:any)=>{
-      console.log(res);
-    });
-  };
 
-  FormSubmit(){
 
+  FormSubmit(jobSearchForm:any){
+    this.isSubmitted = true
+    console.log(jobSearchForm.value);
+    this.getJobSearch(jobSearchForm.value.title, jobSearchForm.value.city);
   }
 }

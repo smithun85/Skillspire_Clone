@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SkillsService } from '../services/skills.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogs',
@@ -13,6 +14,7 @@ export class BlogsComponent {
   isButton:boolean = true
   constructor( 
     private skillsService : SkillsService,
+    private router: Router,
     ){}
 
   ngOnInit(): void {
@@ -29,6 +31,10 @@ export class BlogsComponent {
   onNextPageClick(){
     this.currentPage++;
     this.getBlogs()
-  }
+  };
+
+  // readMore(params:any){
+  //   this.router.navigate(['/blogs', params])
+  // }
  
 }

@@ -15,14 +15,12 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     CommonModule,
     RouterModule.forChild([
       {
-      path:'',
-      component:BlogsComponent,
-      children:[
-        {
-          path:'',
-          component:ReadMoreComponent
-        }
-      ]
+        path:'blogs',
+      component:BlogsComponent, 
+    },
+    {
+      path:'blogs/:id',
+      component:ReadMoreComponent
     }
   ])
   ],

@@ -171,13 +171,13 @@
     </div>
 
     <div class=" program-categories-slider">
-        <ngx-slick-carousel class="carousel category" #slickModal="slick-carousel" [config]="slideConfig">
-          <div ngxSlickItem class="slide" *ngFor="let category of programsCategory">
-            <div>
-              <button type="button" (click)="showCategorywiseSkill(category.slug)">{{category.name}}</button>
-            </div>
+      <ngx-slick-carousel class="carousel category" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem class="slide" *ngFor="let category of programsCategory">
+          <div>
+            <button type="button" (click)="showCategorywiseSkill(category.slug)">{{category.name}}</button>
           </div>
-        </ngx-slick-carousel>
+        </div>
+      </ngx-slick-carousel>
       <!-- Api call Data  -->
       <div class="program-list">
         <!-- left-block -->
@@ -247,39 +247,40 @@
 </section>
 
 <!-- section-4 :Popular-Trainers -->
- <section class=" popular-trainers ">
+<section class=" popular-trainers ">
   <div class="container">
     <div class="trainers">
       <h2 class="mb-4 pb-2">Popular Trainers</h2>
     </div>
 
     <div class="carousel-trainers">
-        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig_blogs">
-          <div ngxSlickItem class="slide" ngxSlickItem *ngFor="let trainers of popular_trainers; let i = index">
-             <div class="trainers-list">
-              <div class="trainers-image">
-                <img [src]="trainers.photo" alt="" width="100%">
-              </div>
-              <div class=" trainers-content">
-               <div>
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig_blogs">
+        <div ngxSlickItem class="slide" ngxSlickItem *ngFor="let trainers of popular_trainers; let i = index">
+          <div class="trainers-list">
+            <div class="trainers-image">
+              <img [src]="trainers.photo" alt="" width="100%">
+            </div>
+            <div class=" trainers-content">
+              <div>
                 <h3 class="trainers-name">{{trainers.name}}</h3>
                 <p>{{trainers.area_of_expertise}}</p>
                 <p>Experience: {{trainers.industry_exp}}</p>
-               </div>
-                <div class="trainers-content-height">
-                  <p class=" ">{{trainers.short_bio.substring(0,130)}}...</p>
-                  <a (click)="popup_Open(trainers.name,trainers.designation,trainers.short_bio)" routerLink="">Read more...</a>
-                </div>
               </div>
-             </div>        
-          </div>  
-        </ngx-slick-carousel>
-      </div>
-<!-- Success stories: -->
-    <div class="success-stories">     
-        <div>
-          <h2 class="mb-3 pb-2">Success Stories</h2>
+              <div class="trainers-content-height">
+                <p class=" ">{{trainers.short_bio.substring(0,130)}}...</p>
+                <a (click)="popup_Open(trainers.name,trainers.designation,trainers.short_bio)" routerLink="">Read
+                  more...</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </ngx-slick-carousel>
+    </div>
+    <!-- Success stories: -->
+    <div class="success-stories">
+      <div>
+        <h2 class="mb-3 pb-2">Success Stories</h2>
+      </div>
       <div *ngFor=" let story of success_stories">
         <div class="name">
           <h2>
@@ -289,13 +290,12 @@
         <div class="success-stories-details">
           <div class="img-fluid">
             <div>
-              <img alt="Subham Gautam" 
-                [src]="story.photo" />
+              <img alt="Subham Gautam" [src]="story.photo" />
             </div>
             <div class="">
               <div class="mt-3">
                 <h3>
-                 {{story.title}}
+                  {{story.title}}
                 </h3>
                 <p class="text-justify" [innerHTML]="story.comments"></p>
               </div>
@@ -303,54 +303,52 @@
           </div>
         </div>
       </div>
-    </div>   
+    </div>
   </div>
-</section> 
+</section>
 
 <!-- section-5:blogs -->
 <section class="blogs">
-    <div class="row seo-h2">
-      <div class="col-xl-12 col-lg-12">
-        <h2 class="mb-4 pb-2">Blogs</h2>
+  <div class="row seo-h2">
+    <div class="col-xl-12 col-lg-12">
+      <h2 class="mb-4 pb-2">Blogs</h2>
+    </div>
+  </div>
+
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig_blogs">
+    <div ngxSlickItem class="slide" ngxSlickItem *ngFor="let blogs of blogsList">
+      <div class="images">
+        <img [src]="blogs.photo" alt="" width="100%">
+        <div class="p-2 blog-content">
+          <p class="blog-by mt-3 mb-2">by {{blogs.author}} {{blogs.date}}</p>
+          <div class="blog-content-height">
+            <h2 class="blog-title text-dark">{{blogs.seo_title}}</h2>
+            <p class=" ">{{blogs.short_desc.substring(0,130)}}...</p>
+          </div>
+          <div>
+            <a routerLink="blogs">Read more...</a>
+          </div>
+        </div>
       </div>
     </div>
-    
-        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig_blogs">
-          <div ngxSlickItem class="slide" ngxSlickItem *ngFor="let blogs of blogsList">
-             <div class="images">
-              <img [src]="blogs.photo" alt="" width="100%">
-              <div class="p-2 blog-content">
-                <p class="blog-by mt-3 mb-2">by {{blogs.author}}  {{blogs.date}}</p>
-                <div class="blog-content-height">
-                  <h2 class="blog-title text-dark">{{blogs.seo_title}}</h2>
-                  <p class=" ">{{blogs.short_desc.substring(0,130)}}...</p>
-                </div>
-                <div>
-                  <a routerLink="blogs">Read more...</a>
-                </div>
-              </div>
-             </div>        
-          </div>  
-        </ngx-slick-carousel>
-    
+  </ngx-slick-carousel>
+
 </section>
 
 <!-- section-6:Ready to join -->
 <section class="ready-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-8">
-        <h2>Ready to Join..?</h2>
-        <p>
-          So what are you waiting for? Start learning from the experts of the
-          industry and boost up your skills to uplevel your career. Join today.
-        </p>
-      </div>
-      <div class="col-md-4 text-right">
-        <button type="button" class="btn btn-primary register-now">
-          REGISTER NOW
-        </button>
-      </div>
+  <div class="ready-contents">
+    <div class="ready-text">
+      <h2>Ready to Join..?</h2>
+      <p>
+        So what are you waiting for? Start learning from the experts of the
+        industry and boost up your skills to <br>uplevel your career. Join today.
+      </p>
+    </div>
+    <div class="register-now">
+      <button type="button" class="btn btn-primary ">
+        REGISTER NOW
+      </button>
     </div>
   </div>
 </section>
