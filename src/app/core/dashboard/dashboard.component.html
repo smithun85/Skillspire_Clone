@@ -161,6 +161,7 @@
 </section>
 
 <!-- section-3:Programs -->
+
 <section class="program-categories">
   <div class="container">
     <div class="row programs">
@@ -170,1014 +171,184 @@
     </div>
 
     <div class=" program-categories-slider">
-      <div class="category">
-        <div class="" *ngFor="let category of programsCategory; let i = index">
-          <button type="button" (click)="showCategorywiseSkill(i)">{{category.name}}</button>
+      <ngx-slick-carousel class="carousel category" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem class="slide" *ngFor="let category of programsCategory">
+          <div>
+            <button type="button" (click)="showCategorywiseSkill(category.slug)">{{category.name}}</button>
+          </div>
         </div>
-      </div>
+      </ngx-slick-carousel>
       <!-- Api call Data  -->
       <div class="program-list">
-        <div class="programList-left" >
-         <div class="btn-list" routerLinkActive="activeList" *ngFor=" let lists of programLists; let i=index">
-          <div class="programList-content" >
-            <a routerLink="" (click)="showSkillshortDesc(i)">{{lists.title}}</a>
+        <!-- left-block -->
+        <div class="programList-left">
+          <div class="btn-list" [routerLinkActive]="['activeList']" [routerLinkActiveOptions]="{exact:
+          true}" *ngFor=" let lists of programLists; let i=index">
+            <div class="programList-content">
+              <a routerLink="" (click)="showSkillshortDesc(i)">{{lists.title}}</a>
+            </div>
+            <div class="right-icon">
+              <img src="../../../../assets/images/white-right-icon.png" alt="">
+            </div>
           </div>
-          <div class="right-icon">
-            <img src="../../../../assets/images/white-right-icon.png" alt="">
+
+          <div class="view-all">
+            <button class="btn btn-primary view-all-btn" (click)="goToPrograms()"><span>View all</span> -<img
+                src="../../../../assets/images/white-right-icon.png" alt=""></button>
           </div>
-         
-         </div>
         </div>
         <!-- right-block -->
-        <div class="programList-right" >
-         <div class="banner">
-
-          <div class="image-type">
-            <div class="image">
-              <img [src]="photo" alt="skillspire banner" class="images" />
-            </div>
-            <div class="program-type">
-              <button class="btn btn-primary">{{program_type}}</button>
-            </div>
-          </div>
-
-          <div class="short-desc">
-            <div class="Recorded">
-              <div class="circle"></div>
-              <div>
-                <h5>Recorded</h5>
+        <div class="programList-right" (click)="goToPrograms()">
+          <div class="banner">
+            <div class="image-type">
+              <div class="image">
+                <img [src]="programLists[index].photo" alt="skillspire banner" class="images" />
+              </div>
+              <div class="program-type">
+                <button class="btn btn-primary right-btn">{{programLists[index].program_type}}</button>
               </div>
             </div>
-            <div class="goal">
-              <h2>{{title}}</h2>
-              <p>{{short_desc}}...</p>
-            </div>
 
-            <div class="time">
-              <img src="../../../assets/images/clock.png" alt="">
-              <p>{{hours_split}} <span>Hour</span> {{minutes_split}} <span>Minutes</span></p>
+            <div class="short-desc">
+              <div class="Recorded">
+                <div class="circle"></div>
+                <div>
+                  <h5>Recorded</h5>
+                </div>
+              </div>
+              <div class="goal">
+                <h2>{{ this.programLists[index].title}}</h2>
+                <p>{{programLists[index].short_desc.substring(0,79)}}...</p>
+              </div>
+
+              <div class="time">
+                <img src="../../../assets/images/clock.png" alt="">
+                <p>{{hours_split}} <span>Hour</span> {{minutes_split}} <span>Minutes</span></p>
+              </div>
+            </div>
+            <div class="price">
+              <p class="discount-fees">₹{{this.programLists[index].discounted_fees}}</p>
+              <p class="fees">₹<del>{{this.programLists[index].fees}}</del> </p>
+            </div>
+            <div class="tutor">
+              <div class="tutor-image">
+                <img [src]="programLists[index].trainerData.photo" alt="">
+              </div>
+              <div class="tutor-details">
+                <p class="name">{{programLists[index].trainerData.name}}</p>
+                <p class="exp">Experience: {{programLists[index].trainerData.industry_exp}}</p>
+              </div>
             </div>
           </div>
-          <div class="price">
-            <p class="discount-fees">₹{{discounted_fees}}</p>
-            <p class="fees">₹<del>{{fees}}</del> </p>
-          </div>
-          <div class="tutor">
-            <div class="tutor-image">
-              <img [src]="trainer_photo" alt="">
-            </div>
-            <div class="tutor-details">
-              <p class="name">{{trainer_name}}</p>
-              <p class="exp">Experience: {{trainer_exp}}</p>
-            </div>
-          </div>
-         </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
-
-
 <!-- section-4 :Popular-Trainers -->
-<section class="pb-1">
+<section class=" popular-trainers ">
   <div class="container">
-    <div class="row">
-      <div class="col-xl-12 col-lg-12">
-        <h2 class="mb-4 pb-2">Popular Trainers</h2>
-      </div>
+    <div class="trainers">
+      <h2 class="mb-4 pb-2">Popular Trainers</h2>
     </div>
-    <div class="row">
-      <div class="col-xl-12 col-lg-12">
-        <!-- <ngx-slick-carousel -->
-        class="carousel popular-trainers-slider slick-initialized slick-slider"
-        >
-        <div class="slick-list draggable">
-          <div class="slick-track" style="
-                opacity: 1;
-                width: 8740px;
-                transform: translate3d(-1520px, 0px, 0px);
-              ">
-            <div class="slide slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/86_b11761bb8a1f2a53950e05317a8d7070.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Ms. Kinjal Choksi</h3>
-                  <p class="mb-0">Recruitment &amp; Talent Sourcing</p>
-                  <p class="mb-0">Experience: 12+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    "Kinjal Choksi specializes in contracts with companies
-                    based out...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_87">Read more…</a>
-                </div>
-              </div>
+
+    <div class="carousel-trainers">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig_blogs">
+        <div ngxSlickItem class="slide" ngxSlickItem *ngFor="let trainers of popular_trainers; let i = index">
+          <div class="trainers-list">
+            <div class="trainers-image">
+              <img [src]="trainers.photo" alt="" width="100%">
             </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/80_7459e921b8b9c9a91153a2a031b5370f.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Dr. Twinkal Patel</h3>
-                  <p class="mb-0">
-                    Seminar on Mental Health, Drugs Abuse in Youth , Social
-                    Welfare for Female
-                  </p>
-                  <p class="mb-0">Experience: 10+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Dr. Twinkal Patel loves to create an awareness of mental
-                    health,...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_81">Read more…</a>
-                </div>
+            <div class=" trainers-content">
+              <div>
+                <h3 class="trainers-name">{{trainers.name}}</h3>
+                <p>{{trainers.area_of_expertise}}</p>
+                <p>Experience: {{trainers.industry_exp}}</p>
               </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/74_dba47be9ee110f2cd0180990021c9e81.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mr. Namra Pandya</h3>
-                  <p class="mb-0">Cryptocurrencies, investing, stocks</p>
-                  <p class="mb-0">Experience: 4+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    "Namra has undertaken many cryptocurrency projects along
-                    with ha...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_75">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="0" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/July/787430906/16582363351387325725.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>CA. Marshall Sarkhedi</h3>
-                  <p class="mb-0">Option Trading</p>
-                  <p class="mb-0">Experience: 10+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Marshall is a Passionate Options Trader and manages a team
-                    of Mo...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-current slick-active" data-slick-index="1" aria-hidden="false"
-              style="width: 360px" tabindex="0">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/May/1521352749/1652504692440272562.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Aashka Trivedi</h3>
-                  <p class="mb-0">Fundamental analysis of stocks</p>
-                  <p class="mb-0">Experience: 3+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Aashka is an Equity Research Analyst with an expertise in
-                    Fundam...
-                  </p>
-                  <a class="read-more-text" tabindex="0">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 360px"
-              tabindex="0">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/April/1932041203/1649854740440695479.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Tejas Jariwala</h3>
-                  <p class="mb-0">Equity Research</p>
-                  <p class="mb-0">Experience: 12+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Tejas has excelled as a Research Head (Equity Research) at
-                    Jaina...
-                  </p>
-                  <a class="read-more-text" tabindex="0">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 360px"
-              tabindex="0">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/February/2145938982/1645535345198099145.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mrs. Ankita Patel</h3>
-                  <p class="mb-0">Communication &amp; Soft Skills</p>
-                  <p class="mb-0">Experience: 9+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Ankita, with 9 years of experience in Soft skills
-                    training, has ...
-                  </p>
-                  <a class="read-more-text" tabindex="0">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="4" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/January/1806381721/16433611201649251808.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Asit Mistry</h3>
-                  <p class="mb-0">Option Trading</p>
-                  <p class="mb-0">Experience: 25+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Asit is an Experienced Stock Market Professional having
-                    more tha...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="5" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/September/week1/3932_e269c1f7f4c1ab6e97ad9753a69070f1.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mr. Rishi Thakker</h3>
-                  <p class="mb-0">
-                    E-commerce Growth Hacker, Digital Marketing Expert
-                  </p>
-                  <p class="mb-0">Experience: 5+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    At the age of 29, Rishi is running his agency with more
-                    than 35 ...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="6" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/89_cabae5bf06c9b8463784870a3a094438.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>CA Yogesh Jain</h3>
-                  <p class="mb-0">Investment Banking</p>
-                  <p class="mb-0">Experience: 15+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Yogesh Jain, who wishes to be a gracious philanthropist,
-                    has som...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="7" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/86_b11761bb8a1f2a53950e05317a8d7070.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Ms. Kinjal Choksi</h3>
-                  <p class="mb-0">Recruitment &amp; Talent Sourcing</p>
-                  <p class="mb-0">Experience: 12+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    "Kinjal Choksi specializes in contracts with companies
-                    based out...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="8" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/80_7459e921b8b9c9a91153a2a031b5370f.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Dr. Twinkal Patel</h3>
-                  <p class="mb-0">
-                    Seminar on Mental Health, Drugs Abuse in Youth , Social
-                    Welfare for Female
-                  </p>
-                  <p class="mb-0">Experience: 10+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Dr. Twinkal Patel loves to create an awareness of mental
-                    health,...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide" data-slick-index="9" aria-hidden="true" style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/74_dba47be9ee110f2cd0180990021c9e81.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mr. Namra Pandya</h3>
-                  <p class="mb-0">Cryptocurrencies, investing, stocks</p>
-                  <p class="mb-0">Experience: 4+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    "Namra has undertaken many cryptocurrency projects along
-                    with ha...
-                  </p>
-                  <a class="read-more-text" tabindex="-1">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/July/787430906/16582363351387325725.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>CA. Marshall Sarkhedi</h3>
-                  <p class="mb-0">Option Trading</p>
-                  <p class="mb-0">Experience: 10+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Marshall is a Passionate Options Trader and manages a team
-                    of Mo...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_3959">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/May/1521352749/1652504692440272562.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Aashka Trivedi</h3>
-                  <p class="mb-0">Fundamental analysis of stocks</p>
-                  <p class="mb-0">Experience: 3+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Aashka is an Equity Research Analyst with an expertise in
-                    Fundam...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_3958">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="12" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/April/1932041203/1649854740440695479.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Tejas Jariwala</h3>
-                  <p class="mb-0">Equity Research</p>
-                  <p class="mb-0">Experience: 12+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Tejas has excelled as a Research Head (Equity Research) at
-                    Jaina...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_3956">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="13" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/February/2145938982/1645535345198099145.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mrs. Ankita Patel</h3>
-                  <p class="mb-0">Communication &amp; Soft Skills</p>
-                  <p class="mb-0">Experience: 9+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Ankita, with 9 years of experience in Soft skills
-                    training, has ...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_3955">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="14" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/Trainer/2022/January/1806381721/16433611201649251808.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Asit Mistry</h3>
-                  <p class="mb-0">Option Trading</p>
-                  <p class="mb-0">Experience: 25+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Asit is an Experienced Stock Market Professional having
-                    more tha...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_3954">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="15" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/September/week1/3932_e269c1f7f4c1ab6e97ad9753a69070f1.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mr. Rishi Thakker</h3>
-                  <p class="mb-0">
-                    E-commerce Growth Hacker, Digital Marketing Expert
-                  </p>
-                  <p class="mb-0">Experience: 5+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    At the age of 29, Rishi is running his agency with more
-                    than 35 ...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_3623">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div class="slide slick-slide slick-cloned" data-slick-index="16" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/89_cabae5bf06c9b8463784870a3a094438.png" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>CA Yogesh Jain</h3>
-                  <p class="mb-0">Investment Banking</p>
-                  <p class="mb-0">Experience: 15+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Yogesh Jain, who wishes to be a gracious philanthropist,
-                    has som...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_90">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="17" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/86_b11761bb8a1f2a53950e05317a8d7070.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Ms. Kinjal Choksi</h3>
-                  <p class="mb-0">Recruitment &amp; Talent Sourcing</p>
-                  <p class="mb-0">Experience: 12+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    "Kinjal Choksi specializes in contracts with companies
-                    based out...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_87">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="18" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/80_7459e921b8b9c9a91153a2a031b5370f.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Dr. Twinkal Patel</h3>
-                  <p class="mb-0">
-                    Seminar on Mental Health, Drugs Abuse in Youth , Social
-                    Welfare for Female
-                  </p>
-                  <p class="mb-0">Experience: 10+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    Dr. Twinkal Patel loves to create an awareness of mental
-                    health,...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_81">Read more…</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="19" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="popular-trainers-box">
-                <div class="img-box">
-                  <img alt="popular-trainers" class="img-fluid mx-auto d-block"
-                    src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/74_dba47be9ee110f2cd0180990021c9e81.jpeg" />
-                </div>
-                <div class="popular-trainers-details">
-                  <h3>Mr. Namra Pandya</h3>
-                  <p class="mb-0">Cryptocurrencies, investing, stocks</p>
-                  <p class="mb-0">Experience: 4+ Years</p>
-                </div>
-                <div class="popular-trainers-desc">
-                  <p class="mb-2 text-justify">
-                    "Namra has undertaken many cryptocurrency projects along
-                    with ha...
-                  </p>
-                  <a class="read-more-text" tabindex="-1" id="clone_75">Read more…</a>
-                </div>
+              <div class="trainers-content-height">
+                <p class=" ">{{trainers.short_bio.substring(0,130)}}...</p>
+                <a (click)="popup_Open(trainers.name,trainers.designation,trainers.short_bio)" routerLink="">Read
+                  more...</a>
               </div>
             </div>
           </div>
         </div>
-        <!-- </ngx-slick-carousel> -->
-      </div>
+      </ngx-slick-carousel>
     </div>
-    <div class="row">
-      <div class="col-xl-12 col-lg-12">
-        <h2 class="mb-4 pb-2">Success Stories</h2>
+    <!-- Success stories: -->
+    <div class="success-stories">
+      <div>
+        <h2 class="mb-3 pb-2">Success Stories</h2>
       </div>
-    </div>
-    <!-- <ngx-slick-carousel -->
-    class="carousel success-stories slick-initialized slick-slider"
-    >
-    <div class="slick-list draggable">
-      <div class="slick-track" style="
-            opacity: 1;
-            width: 1140px;
-            transform: translate3d(0px, 0px, 0px);
-          ">
-        <div ngxslickitem="" class="slide slick-slide slick-current slick-active" data-slick-index="0"
-          aria-hidden="false" style="width: 1120px" tabindex="0">
-          <div class="row">
-            <div class="col-xl-12">
-              <h2 class="main-title mb-4 mr-5">
-                <span> Subham Gautam</span> (Indore)
-              </h2>
+      <div *ngFor=" let story of success_stories">
+        <div class="name">
+          <h2>
+            <span>{{story.name}} ({{story.location}})</span>
+          </h2>
+        </div>
+        <div class="success-stories-details">
+          <div class="img-fluid">
+            <div>
+              <img alt="Subham Gautam" [src]="story.photo" />
             </div>
-          </div>
-          <div class="success-stories-details">
-            <div class="row">
-              <div class="col-xl-4 col-lg-4">
-                <img alt="John Doe" class="img-fluid"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/92_17a29ffcf7f14996d1d71ca6412ea4ea.png" />
-              </div>
-              <div class="col-xl-8 col-lg-8">
-                <div class="mt-3">
-                  <h3 class="seo-h3">
-                    Skillspire has got you covered in every aspect.
-                  </h3>
-                  <p class="text-justify">
-                    <span style="
-                          font-size: 19px;
-                          text-align: center;
-                          white-space: pre-wrap;
-                          background-color: rgb(255, 255, 255);
-                        ">It was a great experience with Skillspire. I got to
-                      learn about many courses which prepared me for the
-                      industry and improved my skills in every aspect.</span>
-                  </p>
-                </div>
+            <div class="">
+              <div class="mt-3">
+                <h3>
+                  {{story.title}}
+                </h3>
+                <p class="text-justify" [innerHTML]="story.comments"></p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- </ngx-slick-carousel> -->
   </div>
 </section>
 
 <!-- section-5:blogs -->
-<section class="blog">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-12 col-lg-12">
-        <h2 class="mb-4 pb-2">Blogs</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-12 col-lg-12 blog-overlay">
-        <!-- <ngx-slick-carousel -->
-        class="carousel blog-slider slick-initialized slick-slider"
-        >
-        <div class="slick-list draggable">
-          <div class="slick-track" style="
-                opacity: 1;
-                width: 5700px;
-                transform: translate3d(-2280px, 0px, 0px);
-              ">
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/36_dd5fb91704d1a32a92e0c3971f8123a4.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Sunaina Anand 17 Aug, 2020
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">Art of Wealth Building</h2>
-                    <p class="text-justify">
-                      Do you want to learn the art of wealth building? While
-                      learning about the concept of mutual funds, it occurred
-                      to me that investi...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_20">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/33_54d7dea691dd95ac091649a0be9c86c9.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Parth Saxena 25 Jun, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      How to analyze digital companies?
-                    </h2>
-                    <p class="text-justify">
-                      This digital transformation has had a profound impact on
-                      businesses; accelerating business activities and
-                      processes to fully leve...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_undefined">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/30_c34421eb20b0bd44aeaea0acf7bb4516.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">by Parth Saxena 2 Jul, 2021</p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      Neo Banks : Do we really need them?
-                    </h2>
-                    <p class="text-justify">
-                      Keeping the idea of digitisation and financial
-                      inclusiveness at the core, the traditional banks have
-                      moved from brick and mortar ...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_undefined">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide" data-slick-index="0" aria-hidden="true" style="width: 360px"
-              tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/December/week2/7548_c5ad51521cba9b22b1bf4f930cdb075a.jpeg" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Mihirsinh Parmar 11 Dec, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      Ways To Improve Your Personal Developme...
-                    </h2>
-                    <p class="text-justify">
-                      Improving personal development skills is vital to fulfil
-                      your life goals, increase chances of employment, earn
-                      more money, etc. B...
-                    </p>
-                  </div>
-                  <a tabindex="-1">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide" data-slick-index="1" aria-hidden="true" style="width: 360px"
-              tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/November/week4/6923_dbb524a8ccaa4a4677b4f63207c3f8f7.jpg" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Yashvi Joshi 23 Nov, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">Just give us a chance. . !</h2>
-                    <p class="text-justify">
-                      I truly needed to pen down my words separated from my
-                      specialized information on the truth of life. I'm in the
-                      pre-last year of m...
-                    </p>
-                  </div>
-                  <a tabindex="-1">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide" data-slick-index="2" aria-hidden="true" style="width: 360px"
-              tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/August/week2/2887_46afc646996551e5b6a1cc24ecf6fc6f.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Shaily Parmar 12 Aug, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">STARTUPS OR CORPORATES?</h2>
-                    <p class="text-justify">
-                      The rise of startups has completely transformed the job
-                      arena in recent years, particularly in India. India
-                      boasts the world's th...
-                    </p>
-                  </div>
-                  <a tabindex="-1">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-current slick-active" data-slick-index="3"
-              aria-hidden="false" style="width: 360px" tabindex="0">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/36_dd5fb91704d1a32a92e0c3971f8123a4.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Sunaina Anand 17 Aug, 2020
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">Art of Wealth Building</h2>
-                    <p class="text-justify">
-                      Do you want to learn the art of wealth building? While
-                      learning about the concept of mutual funds, it occurred
-                      to me that investi...
-                    </p>
-                  </div>
-                  <a tabindex="0">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-active" data-slick-index="4" aria-hidden="false"
-              style="width: 360px" tabindex="0">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/33_54d7dea691dd95ac091649a0be9c86c9.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Parth Saxena 25 Jun, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      How to analyze digital companies?
-                    </h2>
-                    <p class="text-justify">
-                      This digital transformation has had a profound impact on
-                      businesses; accelerating business activities and
-                      processes to fully leve...
-                    </p>
-                  </div>
-                  <a tabindex="0">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-active" data-slick-index="5" aria-hidden="false"
-              style="width: 360px" tabindex="0">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/30_c34421eb20b0bd44aeaea0acf7bb4516.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">by Parth Saxena 2 Jul, 2021</p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      Neo Banks : Do we really need them?
-                    </h2>
-                    <p class="text-justify">
-                      Keeping the idea of digitisation and financial
-                      inclusiveness at the core, the traditional banks have
-                      moved from brick and mortar ...
-                    </p>
-                  </div>
-                  <a tabindex="0">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="6" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/December/week2/7548_c5ad51521cba9b22b1bf4f930cdb075a.jpeg" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Mihirsinh Parmar 11 Dec, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      Ways To Improve Your Personal Developme...
-                    </h2>
-                    <p class="text-justify">
-                      Improving personal development skills is vital to fulfil
-                      your life goals, increase chances of employment, earn
-                      more money, etc. B...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_undefined">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="7" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/November/week4/6923_dbb524a8ccaa4a4677b4f63207c3f8f7.jpg" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Yashvi Joshi 23 Nov, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">Just give us a chance. . !</h2>
-                    <p class="text-justify">
-                      I truly needed to pen down my words separated from my
-                      specialized information on the truth of life. I'm in the
-                      pre-last year of m...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_undefined">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/August/week2/2887_46afc646996551e5b6a1cc24ecf6fc6f.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Shaily Parmar 12 Aug, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">STARTUPS OR CORPORATES?</h2>
-                    <p class="text-justify">
-                      The rise of startups has completely transformed the job
-                      arena in recent years, particularly in India. India
-                      boasts the world's th...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_21">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/36_dd5fb91704d1a32a92e0c3971f8123a4.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Sunaina Anand 17 Aug, 2020
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">Art of Wealth Building</h2>
-                    <p class="text-justify">
-                      Do you want to learn the art of wealth building? While
-                      learning about the concept of mutual funds, it occurred
-                      to me that investi...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_20">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/33_54d7dea691dd95ac091649a0be9c86c9.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">
-                    by Parth Saxena 25 Jun, 2021
-                  </p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      How to analyze digital companies?
-                    </h2>
-                    <p class="text-justify">
-                      This digital transformation has had a profound impact on
-                      businesses; accelerating business activities and
-                      processes to fully leve...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_undefined">Read more...</a>
-                </div>
-              </div>
-            </div>
-            <div ngxslickitem="" class="slide slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true"
-              style="width: 360px" tabindex="-1">
-              <div class="blog-details">
-                <img alt="blog" class="img-fluid mx-auto d-block"
-                  src="https://s3.ap-south-1.amazonaws.com/skillspire.production/storage/2021/July/week1/30_c34421eb20b0bd44aeaea0acf7bb4516.png" />
-                <div class="p-2">
-                  <p class="blog-by mt-3 mb-2">by Parth Saxena 2 Jul, 2021</p>
-                  <div class="blog-content-height">
-                    <h2 class="blog-title">
-                      Neo Banks : Do we really need them?
-                    </h2>
-                    <p class="text-justify">
-                      Keeping the idea of digitisation and financial
-                      inclusiveness at the core, the traditional banks have
-                      moved from brick and mortar ...
-                    </p>
-                  </div>
-                  <a tabindex="-1" id="clone_undefined">Read more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- </ngx-slick-carousel> -->
-      </div>
+<section class="blogs">
+  <div class="row seo-h2">
+    <div class="col-xl-12 col-lg-12">
+      <h2 class="mb-4 pb-2">Blogs</h2>
     </div>
   </div>
+
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig_blogs">
+    <div ngxSlickItem class="slide" ngxSlickItem *ngFor="let blogs of blogsList">
+      <div class="images">
+        <img [src]="blogs.photo" alt="" width="100%">
+        <div class="p-2 blog-content">
+          <p class="blog-by mt-3 mb-2">by {{blogs.author}} {{blogs.date}}</p>
+          <div class="blog-content-height">
+            <h2 class="blog-title text-dark">{{blogs.seo_title}}</h2>
+            <p class=" ">{{blogs.short_desc.substring(0,130)}}...</p>
+          </div>
+          <div>
+            <a routerLink="blogs">Read more...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+
 </section>
 
 <!-- section-6:Ready to join -->
 <section class="ready-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-8">
-        <h2>Ready to Join..?</h2>
-        <p>
-          So what are you waiting for? Start learning from the experts of the
-          industry and boost up your skills to uplevel your career. Join today.
-        </p>
-      </div>
-      <div class="col-md-4 text-right">
-        <button type="button" class="btn btn-primary register-now">
-          REGISTER NOW
-        </button>
-      </div>
+  <div class="ready-contents">
+    <div class="ready-text">
+      <h2>Ready to Join..?</h2>
+      <p>
+        So what are you waiting for? Start learning from the experts of the
+        industry and boost up your skills to <br>uplevel your career. Join today.
+      </p>
+    </div>
+    <div class="register-now">
+      <button type="button" class="btn btn-primary ">
+        REGISTER NOW
+      </button>
     </div>
   </div>
 </section>

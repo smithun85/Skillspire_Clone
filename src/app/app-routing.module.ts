@@ -25,7 +25,7 @@ const routes: Routes = [
       loadChildren:()=>import('./core/jobs/jobs.module').then(m=>m.JobsModule)
      },
      {
-      path:'blogs',
+      path:'',
       loadChildren:()=>import('./core/blogs/blogs.module').then(m=>m.BlogsModule)
      },
 

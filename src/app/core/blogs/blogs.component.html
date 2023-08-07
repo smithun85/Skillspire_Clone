@@ -1,1 +1,29 @@
-<p>blogs works!</p>
+<section class="pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <h1 class="mb-0 mb-lg-2 pb-2">Blogs</h1>
+            </div>
+        </div>
+        <div class="row align-items-center all-blog-list-main ml-0 mr-0" *ngFor="let blogs of blogs_data">
+            <div class="col-xl-5 col-lg-5">
+                <img alt="blog-img" class="img-fluid" [src]="blogs.photo">
+            </div>
+            <div class="col-xl-7 col-lg-7">
+                <div class="all-blog-list">
+                    <p class="by-skillspire">by {{blogs.author}} {{blogs.date}}</p>
+                    <h4>{{blogs.seo_title}}</h4>
+                    <p class="text-justify">{{blogs.short_desc}}...</p>
+                    <span class="badge badge-pill badge-info mt-4 text-uppercase"></span>
+                    <a class="float-right mt-4 pt-2 read-more-text" [routerLink]="['/blogs', blogs.slug]">Read more</a>
+                    <!-- <button clbuttonss="float-right mt-4 pt-2 read-more-text" (click)="readMore(blogs.slug)">Read more</button> -->
+                </div>
+            </div>
+        </div>
+        <div class="row text-center view-more">
+            <div class="col-xl-12 col-lg-12 mt-4 ">
+                <button *ngIf="currentPage < 3" type="button" class="btn btn-primary register-now"  (click)="onNextPageClick()"> View more</button>
+            </div>
+        </div>
+    </div>
+</section>
