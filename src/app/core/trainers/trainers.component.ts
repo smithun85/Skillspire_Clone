@@ -13,6 +13,8 @@ export class TrainersComponent implements OnInit{
   bsModalRef?: BsModalRef;
   trainers_data:any[]=[];
   currentPage:number = 1
+  pageLimit:number = 6;
+  isButton:boolean = true
   constructor( 
     private modalService: BsModalService,
     private skillsService : SkillsService,
@@ -22,16 +24,16 @@ export class TrainersComponent implements OnInit{
     this.getTraiers()
   };
 
-  getTraiers(){
-    this.skillsService.getTrainesrdata(this.currentPage).subscribe( (response:any)=>{
-      console.log(response)
-      this.trainers_data = this.trainers_data.concat(response.DATA.trainers)
-    })
+  getTraiers(){      
+      this.skillsService.getTrainesrdata(this.pageLimit, this.currentPage).subscribe( (response:any)=>{
+        console.log(response)
+        this.trainers_data = this.trainers_data.concat(response.DATA.trainers)
+      })
+  
   }
   onNextPageClick(){
     this.currentPage++;
     this.getTraiers()
-
   }
  
   popup_Open( name:string,designation:string,read_more:string){

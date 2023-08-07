@@ -1,0 +1,45 @@
+
+.input-group-prepend{
+    position: relative;
+};
+.input-group-prepend img{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 111;
+
+}
+.job input{
+    color: #dee0e2;
+    opacity: .6;
+    font-weight: 500;
+    font-size: 20px;
+    border: 1px solid #626262;
+    padding:0 60px 5px ;
+    border: 1px solid #ced4da;
+    
+};
+.city-select{
+    color: #626262!important;
+    font-weight: 500;
+    font-size: 20px;
+    box-shadow: none;
+    padding-left: 50px;
+    border: 1px solid #ced4da;
+};
+option {
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+.job-btn{
+    padding: 8px 40px;
+    font-size: 18px;
+    font-weight: 700;
+    background: #00b6f0;
+    border-color: #00b6f0;
+}
+.job-btn:hover{
+    background: #fff;
+    color: #00b6f0;
+}
