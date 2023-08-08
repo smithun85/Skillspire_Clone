@@ -96,7 +96,14 @@ export class SkillsService {
             'search':title
         }
         }
-        return this.http.get(`${this.url}/job` , { params:queryParams })
+        return this.http.get(`${this.url}/job` , { params:queryParams });
+    };
+
+    getFilterSorting(){
+        return this.http.get(`${this.url}/program/filter-sorting-config`)
+    };
+    getProgramsPage(sortBy:string){
+        return this.http.get(`${this.url}/program`, {params:{'sortBy':sortBy,'limit':6,'page':1}})
     }
 
 
