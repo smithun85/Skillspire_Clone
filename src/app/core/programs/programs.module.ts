@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProgramsComponent } from './programs.component';
 import { RouterModule } from '@angular/router';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,10 +14,13 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([{
       path:'',
       component:ProgramsComponent
-    }])
+    }]),
+
   ]
 })
 export class ProgramsModule { }

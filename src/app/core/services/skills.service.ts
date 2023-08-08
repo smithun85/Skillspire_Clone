@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 @Injectable({providedIn:"root"})
@@ -66,37 +66,55 @@ export class SkillsService {
     };
    
     searchJob(title:string, city:string){
-        let queryParams = {}
-        if(title =='' && city ==''){
-            queryParams = {
-                'limit':6, 
-                'page':1, 
-                'sortBy':'reverse:created_at' ,
-            }
-        }else if(title  && city ==''){
-            queryParams = {
-                'limit':6, 
-                'page':1, 
-                'sortBy':'reverse:created_at' ,
-                'search':title
-            }
-        }else if(title =='' && city ){
-            queryParams = {
-                'limit':6, 
-                'page':1, 
-                'sortBy':'reverse:created_at' ,
-                'city':city ,
-            }
-        }else{
-            queryParams = {
+        let queryParams = {
             'limit':6, 
             'page':1, 
             'sortBy':'reverse:created_at' ,
             'city':city ,
             'search':title
-        }
-        }
-        return this.http.get(`${this.url}/job` , { params:queryParams })
+    }
+        return this.http.get(`${this.url}/job` , { params:queryParams });
+    };
+
+    getFilterSorting(){
+        return this.http.get(`${this.url}/program/filter-sorting-config`)
+    };
+
+
+
+    getProgramsPage(form_Params:any[],sortBy:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append( 'sortBy',sortBy);
+        queryParams = queryParams.append('limit',6);
+        queryParams = queryParams.append( 'page',1);
+       
+
+     
+
+       let parameterValues:any = {};
+
+        form_Params.forEach(param => {
+       const key = Object.keys(param)[0]; // Get the property name (e.g., 'price', 'level')
+    //    console.log("Key_:",key);
+      const value = param[key]; // Get the value of the property
+
+         if (parameterValues[key]) {
+    // If the key already exists, concatenate the value
+               parameterValues[key] += `,${value}`;
+             } else {
+               parameterValues[key] = value;
+            }
+         });
+        //  console.log(parameterValues);
+
+         // Append the values to the queryParams
+        Object.keys(parameterValues).forEach(key => {
+            // console.log(key);
+            // console.log( parameterValues[key]);
+            queryParams = queryParams.append(key, parameterValues[key]);
+            // console.log(queryParams);
+        });      
+        return this.http.get(`${this.url}/program`, {params:queryParams})
     }
 
 

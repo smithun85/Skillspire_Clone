@@ -1,8 +1,8 @@
 .course-page{
-    padding: 40px;
+  padding: 40px;
 }
 .course-page .container{
-   display: flex;
+ display: flex;
 };
 
 .course-page  .upcoming-b{
@@ -12,187 +12,197 @@ padding:10px;
 cursor: pointer;
 };
 .course-page  .upcoming-b:hover{
-    border: 1px solid #00b6f0;
-    };
+  border: 1px solid #00b6f0;
+  };
 .course-page  .upcoming-b .program-filter-label{   
-    margin-bottom: 10px;
-    color: #00b6f0;
-    font-size: 14px;
-    };
+  margin-bottom: 10px;
+  color: #00b6f0;
+  font-size: 14px;
+  };
 
-    .course-page  .upcoming-b .form-check-label{   
-        font-size: 14px;
-        color: #626262;
-        margin-right: 50px;
-    }
+  .course-page  .upcoming-b .form-check-label{   
+      font-size: 14px;
+      color: #626262;
+      margin-right: 50px;
+  }
 .course-page  .upcoming-b .form-check-label input{   
-    margin-right:10px;
+  margin-right:10px;
 };
 
 .programs{
-    margin:0px 15px;
-  }
-
-.filter-course{
-    display: flex;
-    justify-content: space-between;
+  margin:0px 15px;
 }
 
+.filter-course{
+  display: flex;
+  justify-content: space-between;
+  gap: 450px;
+  margin:0 0 30px 10px;
+};
+
 .course-page .programs{
-    border-left:1px solid #007bff;
+  border-left:1px solid #007bff;
 };
 
 
 
 
+
+
+
+.programList-right{
+  padding:0 50px;
+};
+.banner-container{
+  // display: flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+};
+.outer-banner{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  margin: 0 0 30px;
+  padding: 0 15px;
+}
+.programList-right .banner{
+  border: 1px solid #d5d5d5;
+  cursor: pointer;
+  padding: 10px;
+  width: 333px;
+  height: auto;
+
+};
+.program-language-label{
+  background-color:#13b3e9;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1.1px;
+  padding: 3px 10px;
+  font-weight: 500;
+  margin: 5px 0 5px 5px;
+}
+
+.programList-right .banner .images{
+  width: 310px;
+  height: 150px;   
+};
+
+.program-type{
+  position: relative;
+}
+.right-btn{
+  padding: 2px 5px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 1.08px;
+  background-color: #00b6f0;
+  border:none;
+  position: absolute;
+  left: 160px;
+  bottom: -14px;
+  text-transform: uppercase;
+
+};
+
+
+.short-desc h2, h3, h4,h5, p{
+  color: #222222
+};
+.short-desc p{
+ color: #626262;
+}
+
+.Recorded{
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 10px
+};
+.Recorded h5{
+  padding-top: 10px;
+  font-size: 16px;
+}
+.circle{
+  width: 12px;
+  height: 12px;
+  background-color: #ed2626e2;
+  border-radius: 50%;
+};
+.goal h2{
+  font-size: 16px;
+}
+.goal h2:hover{
+  color: #00b6f0;
+};
+.goal p{
+  font-size: 14px;
+}
+
+
+.time{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: center;
+  gap: 10px;
+};
+.time img{
+  width: 16px;
+  height: auto;
+  margin-top: -16px;
+}
+.time p{
+ color: #626262;
+ font-size: 14px;
  
+}
 
-  
-  .programList-right{
-    padding:0 50px;
-  };
-  .banner-container{
-    display: flex;
-  };
-  .outer-banner{
-    margin: 0 0 30px;
-    padding: 0 15px;
-  }
-  .programList-right .banner{
-    border: 1px solid #d5d5d5;
-    cursor: pointer;
-    padding: 10px;
-    width: 333px;
-    height: auto;
+.price{
+  display: flex;
+  gap: 10px;
+};
 
-  };
-  .program-language-label{
-    background-color:#13b3e9;
-    color: #fff;
-    font-size: 14px;
-    letter-spacing: 1.1px;
-    padding: 3px 10px;
-    font-weight: 500;
-    margin: 5px 0 5px 5px;
-  }
+.price .discount-fees{
+  color: #00b6f0;
+  font-size: 18px;
+  font-weight:600;
+};
+.price .fees{
+  color: #626262;
+  font-size: 18px;
+  font-weight: 600;
+}
+ 
+.tutor{
+ border-top: 1px solid  #d5d5d5;
+ 
+  padding: 16px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-  .programList-right .banner .images{
-    width: 310px;
-    height: 150px;   
-  };
-  
-  .program-type{
-    position: relative;
-  }
-  .right-btn{
-    padding: 2px 5px;
-    font-size: 15px;
-    color: #fff;
-    font-weight: 400;
-    letter-spacing: 1.08px;
-    background-color: #00b6f0;
-    border:none;
-    position: absolute;
-    left: 160px;
-    bottom: -14px;
-    text-transform: uppercase;
-
-  };
-
-  
-  .short-desc h2, h3, h4,h5, p{
-    color: #222222
-  };
-  .short-desc p{
-   color: #626262;
-  }
-  
-  .Recorded{
-    display: flex;
-    gap: 10px;
-    flex-direction: row;
-    justify-content:flex-start;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 10px
-  };
-  .Recorded h5{
-    padding-top: 10px;
-    font-size: 16px;
-  }
-  .circle{
-    width: 12px;
-    height: 12px;
-    background-color: #ed2626e2;
-    border-radius: 50%;
-  };
-  .goal h2{
-    font-size: 16px;
-  }
-  .goal h2:hover{
-    color: #00b6f0;
-  };
-  .goal p{
-    font-size: 14px;
-  }
-  
-  
-  .time{
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    align-items: center;
-    gap: 10px;
-  };
-  .time img{
-    width: 16px;
-    height: auto;
-    margin-top: -16px;
-  }
-  .time p{
-   color: #626262;
-   font-size: 14px;
-   
-  }
-  
-  .price{
-    display: flex;
-    gap: 10px;
-  };
-  
-  .price .discount-fees{
-    color: #00b6f0;
-    font-size: 18px;
-    font-weight:600;
-  };
-  .price .fees{
-    color: #626262;
-    font-size: 18px;
-    font-weight: 600;
-  }
-   
-  .tutor{
-   border-top: 1px solid  #d5d5d5;
-   
-    padding: 16px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .tutor-image img{
-    object-fit: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  .tutor-details .name{
-    color: 626262;
-   font-size: 14px;
-  margin-bottom: -1px;
-  };
-  .tutor-details .exp{
-    color: 626262;
-    font-size: 14px;
-  };
+.tutor-image img{
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.tutor-details .name{
+  color: 626262;
+ font-size: 14px;
+margin-bottom: -1px;
+};
+.tutor-details .exp{
+  color: 626262;
+  font-size: 14px;
+};
