@@ -71,15 +71,14 @@ export class DashboardComponent implements OnInit {
       console.log("BlogsData",res.DATA);
       this.blogsList = res.DATA.blogs;
       res.DATA.blogs.map( (item:any)=>{
-       let dates = new Date(item.date);
-
+    
        res.DATA.blogs.map( (item:any)=>{
         let dates = new Date(item.date);
  
         const options:any = { day: 'numeric', month: 'short', year: 'numeric' };
         const formatter = new Intl.DateTimeFormat('en-US', options);
         const parts  = formatter.format(dates);
-        console.log(parts)
+        // console.log(parts)
         this.date = `${parts[2]} ${parts[0]}, ${parts[4]}`;
 
 

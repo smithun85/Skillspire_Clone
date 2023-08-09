@@ -6,8 +6,9 @@
                     <label class="program-filter-label"><u (click)="reset()">Reset All</u></label>
                 </div>
                <div class="all-form">
-                    <form [formGroup]="form_skill">
+                   
                         <div class="upcoming-b" *ngFor="let label of filtered_data; let i=index">
+                            <form [formGroup]="form_skill">
                             <label class="program-filter-label">{{label.title}}</label>
                             <div *ngFor="let checkbox_title of label[label.key]">
                                 <label for="check" class="form-check-label">
@@ -15,8 +16,9 @@
                                     {{checkbox_title.name}} 
                                 </label>
                             </div>
+                        </form>
                         </div>
-                    </form>
+                   
                </div>
             </div>
         </div>
@@ -35,7 +37,7 @@
                 </div>
         
                 <div class="banner-container" *ngFor=" let program of programs_data">
-                    <div class="outer-banner">
+                    <div class="outer-banner" (click)="goToCourseDetails(program.slug)">
                         <div class="banner">
                             <div class="d-flex align-items-center">
                                 <div class=" program-language-label">{{program.prog_languages}}</div>

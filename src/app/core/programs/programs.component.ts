@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillsService } from '../services/skills.service';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-programs',
@@ -18,7 +19,8 @@ export class ProgramsComponent implements OnInit {
 
 
   constructor(
-    private _skillService:SkillsService
+    private _skillService:SkillsService,
+    private _router:Router
   ){}
 
   ngOnInit(): void { 
@@ -33,7 +35,7 @@ export class ProgramsComponent implements OnInit {
 
   getFilterSortig_data(){
     this._skillService.getFilterSorting().subscribe( (response:any)=>{
-      console.log(response);
+      // console.log(response);
       this.sorted_data = response.DATA.sorting;
       this.filtered_data = response.DATA.filters;
 
@@ -47,20 +49,43 @@ export class ProgramsComponent implements OnInit {
   }; 
 
   onChecked_Skill(event:any, key:string){ 
-    console.log("Event:",event.target.value);
+    // console.log("Event:",event.target.value);
     const selected_programs = (this.form_skill.controls['selected_programs'] as FormArray);
     if (event.target.checked) {
       selected_programs.push(new FormControl({[key]:event.target.value}));
     } else {
       const index = selected_programs.controls
-      .findIndex(x => x.value == event.target.value);
-      // .findIndex(x => console.log(x.value, {[key]:event.target.value}));
-      console.log(index);
-      console.log(selected_programs);
+      .findIndex(x => x.value[key] === event.target.value);
+      // console.log(index);
+      // console.log(selected_programs);
       selected_programs.removeAt(index);
     };
     console.log(this.form_skill.value.selected_programs);
-    this.getPrograms_data()
+
+    this.form_skill.value.selected_programs.map( (paramsData:any)=>{
+      let params = paramsData[key];
+
+      // ======================================Navigate to same page:=============================================
+      let parameterValues:any = {};
+      this.form_skill.value.selected_programs.forEach((param:any )=> {
+     const key = Object.keys(param)[0]; // Get the property name (e.g., 'price', 'level')
+       //console.log("Key_:",key);
+     const value = param[key]; // Get the value of the property
+       if (parameterValues[key]) {
+             parameterValues[key] += `,${value}`;
+           } else {
+             parameterValues[key] = value;
+          }
+       });
+      Object.keys(parameterValues).forEach(key => {
+        this._router.navigate(['./programs'], {queryParams:parameterValues})
+      });      
+      
+    })
+    // ===================================================================================================================
+    this.getPrograms_data();
+
+   
   }  
 
   reset(){
@@ -71,6 +96,10 @@ export class ProgramsComponent implements OnInit {
     console.log(e.target.value);
     this.sortBy = e.target.value;
     this.getPrograms_data();
+  };
+
+  goToCourseDetails(params:any){
+    this._router.navigate(['./program',params])
   }
 
 }
