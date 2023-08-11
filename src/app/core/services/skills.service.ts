@@ -81,31 +81,14 @@ export class SkillsService {
 
 
 
-    getProgramsPage(form_Params:any[],sortBy:string){
+    getProgramsPage(parameterValues:any[],sortBy:string){
         let queryParams = new HttpParams();
         queryParams = queryParams.append( 'sortBy',sortBy);
         queryParams = queryParams.append('limit',6);
         queryParams = queryParams.append( 'page',1);
 
-       let parameterValues:any = {};
-        form_Params.forEach(param => {
-       const key = Object.keys(param)[0]; // Get the property name (e.g., 'price', 'level')
-    //    console.log("Key_:",key);
-      const value = param[key]; // Get the value of the property
-
-         if (parameterValues[key]) {
-    // If the key already exists, concatenate the value
-               parameterValues[key] += `,${value}`;
-             } else {
-               parameterValues[key] = value;
-            }
-         });
-        //  console.log(parameterValues);
-
          // Append the values to the queryParams
-        Object.keys(parameterValues).forEach(key => {
-            // console.log(key);
-            // console.log( parameterValues[key]);
+        Object.keys(parameterValues).forEach((key:any) => {          
             queryParams = queryParams.append(key, parameterValues[key]);
             // console.log(queryParams);
         });      
@@ -114,7 +97,6 @@ export class SkillsService {
 
     getProgramCourseDetails(params:any){
         return this.http.get(`${this.url}/program/${params}`)
-    }
-
+    };
 
 }

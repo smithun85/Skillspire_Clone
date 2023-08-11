@@ -1,0 +1,59 @@
+  getFilterSortig_data(){
+    
+    let paramsArr:any[] = []
+
+      this._route.queryParams.subscribe( (params:any)=>{     
+        // console.log(params);
+        // let params_value = ''
+        // console.log(Object.values(params));
+        // Object.values(params).map( (params:any)=>{
+        //   paramsArr = params.split(',') ;     
+        // })
+        // // Object.values(params).map( (array:any)=>{
+        // //   paramsArr.push(array)
+        // // })
+        // console.log(paramsArr);
+          
+// ==========================================
+        this._skillService.getFilterSorting().subscribe( (response:any)=>{
+          // console.log( response.DATA.filters);
+          this.sorted_data = response.DATA.sorting;
+          this.filtered_data = response.DATA.filters;
+        
+          let checked_Object = {}
+          let checkedValue =''
+        //   this.filtered_data.map( (parent_label:any)=>{
+        //   // console.log(parent_label);
+        //   let key = parent_label.key;
+        //   // console.log(parent_label[key]);
+        //   parent_label[key].map((checked_label:any)=>{           
+        //     Object.values(checked_label).map( (value:any)=>{
+        //       // console.log(value);
+             
+        //       // paramsArr.map( (checked:any)=>{
+        //       //   checkedValue = checked
+        //       //   // if(value === checkedValue){
+        //       //   //   checked_Object = Object.assign(checked_label,{checked:true}) 
+        //       //   // };
+        //       // })
+           
+             
+            
+           
+        //       // console.log(event.target.value, value);
+               
+        //       //  else{
+        //       //    checked_Object = Object.assign(checked_label,{checked:false}) 
+        //       //  }        
+           
+        //     });
+        //     // if(value === 'free' && value === 'Live'){
+        //     //   checked_Object = Object.assign(checked_label,{checked:true}) 
+        //     // }
+        //   })  
+        // });
+     })
+    });
+   
+  
+  };

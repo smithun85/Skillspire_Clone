@@ -1,41 +1,42 @@
 <section class="course-page">
     <div class="container">
         <div class="reset-all">
-            <div class="course-list-border program-filter d-flex flex-column flex-shrink-0 overflow-auto sidebar-container pt-0 sidebar-expanded">
-                <div class="d-flex justify-content-end">
-                    <label class="program-filter-label"><u (click)="reset()">Reset All</u></label>
-                </div>
-               <div class="all-form">
-                   
+            <div
+                class="course-list-border program-filter d-flex flex-column flex-shrink-0 overflow-auto sidebar-container pt-0 sidebar-expanded">
+                <form [formGroup]="form_skill">
+                    <div class="d-flex justify-content-end">
+                        <label class="program-filter-label"><u (click)="reset()">Reset All</u></label>
+                    </div>
+                    <div class="all-form">
                         <div class="upcoming-b" *ngFor="let label of filtered_data; let i=index">
-                            <form [formGroup]="form_skill">
                             <label class="program-filter-label">{{label.title}}</label>
-                            <div *ngFor="let checkbox_title of label[label.key]">
+                            <div *ngFor="let checkbox_title of label[label.key]; let j=index">
                                 <label for="check" class="form-check-label">
-                                    <input id="check" type="checkbox" formArrayName="selected_programs" [value] ="checkbox_title.slug" (change)="onChecked_Skill($event,label.key)">
-                                    {{checkbox_title.name}} 
+                                    <input id="check" type="checkbox"  formArrayName="selected_programs" [checked]="checkbox_title.checked"
+                                        [value]="checkbox_title.slug" (change)="onChecked_Skill($event,label.key)">
+                                    {{checkbox_title.name}} {{checkbox_title.checked}}
                                 </label>
                             </div>
-                        </form>
                         </div>
-                   
-               </div>
-            </div>
+                    </div>
+                </form>
+            </div> 
+            <!-- [checked]="checkboxStates[label.key][j]"-->
         </div>
         <div class="programs">
             <div class="programList-right">
                 <div class="filter-course">
                     <h2>Programs</h2>
                     <div>
-                        <select class="" (change)="onSelectFilter($event)" >
+                        <select class="" (change)="onSelectFilter($event)">
                             <option selected value="start_date">Old to New</option>
                             <option value="reverse:fees">High to Low</option>
                             <option value="fees">Low to High</option>
                             <option value="reverse:start_date">New to Old</option>
-                          </select>
-                    </div>    
+                        </select>
+                    </div>
                 </div>
-        
+
                 <div class="banner-container" *ngFor=" let program of programs_data">
                     <div class="outer-banner" (click)="goToCourseDetails(program.slug)">
                         <div class="banner">
@@ -44,8 +45,7 @@
                             </div>
                             <div class="image-type">
                                 <div class="image">
-                                    <img [src]="program.photo"
-                                        alt="skillspire banner" class="images" />
+                                    <img [src]="program.photo" alt="skillspire banner" class="images" />
                                 </div>
                                 <div class="program-type">
                                     <button class="btn btn-primary right-btn">{{program.program_type}}</button>
@@ -75,8 +75,7 @@
                             </div>
                             <div class="tutor">
                                 <div class="tutor-image">
-                                    <img [src]="program.trainerData.photo"
-                                        alt="">
+                                    <img [src]="program.trainerData.photo" alt="">
                                 </div>
                                 <div class="tutor-details">
                                     <p class="name">{{program.trainerData.name}}</p>
@@ -135,7 +134,7 @@
                             </div>
                         </div>
                     </div> -->
-               </div>
+                </div>
 
 
             </div>

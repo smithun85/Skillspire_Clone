@@ -171,10 +171,10 @@
     </div>
 
     <div class=" program-categories-slider">
-      <ngx-slick-carousel class="carousel category" #slickModal="slick-carousel" [config]="slideConfig">
+      <ngx-slick-carousel class="carousel category" #slickModal="slick-carousel" [config]="slideConfig" >
         <div ngxSlickItem class="slide" *ngFor="let category of programsCategory">
-          <div>
-            <button type="button" (click)="showCategorywiseSkill(category.slug)">{{category.name}}</button>
+          <div [routerLinkActive]="['active1']">
+            <a routerLink="" (click)="showCategorywiseSkill(category.slug)">{{category.name}}</a>
           </div>
         </div>
       </ngx-slick-carousel>
@@ -183,7 +183,7 @@
         <!-- left-block -->
         <div class="programList-left">
           <div class="btn-list" [routerLinkActive]="['activeList']" [routerLinkActiveOptions]="{exact:
-          true}" *ngFor=" let lists of programLists; let i=index">
+          false}" *ngFor=" let lists of programLists; let i=index">
             <div class="programList-content">
               <a routerLink="" (click)="showSkillshortDesc(i)">{{lists.title}}</a>
             </div>
