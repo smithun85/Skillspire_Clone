@@ -1,1 +1,89 @@
-<p>course-details works!</p>
+<section class="program-inner">
+    <div class="left-part">
+        <div class="heading">
+            <h2 >{{courseDetails.title}}</h2>
+            <div>
+                <span style="color: #1B8ED9; background: white; border-radius: 15px;">
+                    {{courseDetails.program_type}}
+                </span>
+            </div>
+        </div>
+        <p>{{courseDetails.short_desc}}</p>
+
+        <div class="time-course">
+            <div class="time">
+                <img src="../../../../assets/images/small-clock-white.png" alt="clock">
+                <p> Duration: <Span>{{hours_split}}Hour</Span> <span> {{minutes_split}}minutes</span></p>
+            </div>
+            <div class="course">
+                <p>{{courseDetails.prog_languages}}</p>
+            </div>
+        </div>
+
+        <div class="price">
+            <p class="discount-fees">₹{{courseDetails.discounted_fees}}</p>
+            <p class="fees">₹<del>{{courseDetails.fees}}</del> </p>
+        </div>
+
+        <div class="recorded">
+            <div class="circle"></div>
+            <h6>Recorded</h6>
+        </div>
+        <div class="enroll-btn">
+            <button class="btn btn-warning" (click)="goToLoginPage()">Entroll</button>
+        </div>
+
+
+    </div>
+    <div class="right-part-image">
+        <img alt="course-all-category-page" class="img-right-full d-none d-sm-block" [src]='courseDetails.photo'>
+    </div>
+</section>
+
+
+<section>
+    <div class="course-details">
+        <div class="contents">
+            <h2>What will you learn?</h2>
+            <p [innerHTML]="courseDetails.description"></p>
+            <h2>Certification Course</h2>
+
+            <div class="session">
+                <span class="border-session">8 Sessions</span>
+                <span>time</span>
+            </div>
+
+            <div class="course" *ngFor="let course of courseDetails.session_details; let i=index">
+                <div class="circle-session">
+                    <span>Session</span>
+                    <div class="index">
+                        <span>{{i+1}}</span>
+                    </div>
+                </div>
+                <div class="course-sessions">
+                    <div class="course-tutors-details">
+                       <div class="inner-tutors">
+                        <div class="left-img">
+                            <img [src]="course.thumbnail" alt="">
+                        </div>
+    
+                        <div class="right-contents">
+                            <h2 >{{course.title}}</h2>
+                            <p class="tutor-name" > <span (click)="onTrainerDetails(course.trainerData)">{{course.trainerData.name}}</span> </p>
+                            <div class="time">
+                                <img src="../../../../assets/images/clock.png" alt="clock">
+                                <p> Duration: <Span>{{course.duration.split(':')[0]}} Hour</Span>
+                                     <span> {{course.duration.split(':')[1]}} minutes</span>
+                                </p>
+                            </div>
+                            <p [innerHTML]="course.trainerData.short_bio"></p>
+                            <p>read more</p>
+                        </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

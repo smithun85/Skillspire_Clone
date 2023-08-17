@@ -122,7 +122,16 @@ font-weight: 400;
 
 .category{
  margin-bottom: 80px; 
+ text-align: center;
+ 
+ .slide {
+  cursor: pointer;
+   .active1{
+    background-color: yellow;
+   }
+ };
 };
+
 
 .programList-left{
   width:50%;

@@ -13,7 +13,7 @@ const routes: Routes = [
         loadChildren:()=>import('./core/dashboard/dashboard.module').then(m=>m.DashboardModule)
       },
      {
-      path:'programs',
+      path:'',
       loadChildren:()=>import('./core/programs/programs.module').then(m=>m.ProgramsModule)
      },
      {

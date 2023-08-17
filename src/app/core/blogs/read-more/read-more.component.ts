@@ -24,8 +24,6 @@ export class ReadMoreComponent implements OnInit {
         console.log(response);
         this.blog = response.DATA.blog
       })
-
-
     })
   }
 }

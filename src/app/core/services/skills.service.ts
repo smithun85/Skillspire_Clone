@@ -1,11 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 @Injectable({providedIn:"root"})
 
 export class SkillsService {
-    // Request URL
-    // url:string ='https://api.skillspire.in/api/trainer/?sortBy=reverse:created_at&popular=1'
+
 
     url:string = 'https://api.skillspire.in/api'
     constructor(private http:HttpClient){}
@@ -19,12 +18,12 @@ export class SkillsService {
     }
 
     getTestimonialsData(){
-        const url = 'https://api.skillspire.in/api/testimonial/?sortBy=reverse:created_at&limit=100&popular=1'
+        const url = `${this.url}/testimonial/?sortBy=reverse:created_at&limit=100&popular=1`
         return this.http.get(url)
     };
 
     getBlogsData(){
-        return this.http.get('https://api.skillspire.in/api/blog/?sortBy=reverse:created_at&popular=1&limit=6&page=1')
+        return this.http.get(`${this.url}/blog/?sortBy=reverse:created_at&popular=1&limit=6&page=1`)
     };
 
     getblogs(limit:number, page:number){
@@ -66,45 +65,38 @@ export class SkillsService {
     };
    
     searchJob(title:string, city:string){
-        let queryParams = {}
-        if(title =='' && city ==''){
-            queryParams = {
-                'limit':6, 
-                'page':1, 
-                'sortBy':'reverse:created_at' ,
-            }
-        }else if(title  && city ==''){
-            queryParams = {
-                'limit':6, 
-                'page':1, 
-                'sortBy':'reverse:created_at' ,
-                'search':title
-            }
-        }else if(title =='' && city ){
-            queryParams = {
-                'limit':6, 
-                'page':1, 
-                'sortBy':'reverse:created_at' ,
-                'city':city ,
-            }
-        }else{
-            queryParams = {
+        let queryParams = {
             'limit':6, 
             'page':1, 
             'sortBy':'reverse:created_at' ,
             'city':city ,
             'search':title
-        }
-        }
+    }
         return this.http.get(`${this.url}/job` , { params:queryParams });
     };
 
     getFilterSorting(){
         return this.http.get(`${this.url}/program/filter-sorting-config`)
     };
-    getProgramsPage(sortBy:string){
-        return this.http.get(`${this.url}/program`, {params:{'sortBy':sortBy,'limit':6,'page':1}})
-    }
 
+
+
+    getProgramsPage(parameterValues:any,sortBy:string){
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append( 'sortBy',sortBy);
+        queryParams = queryParams.append('limit',6);
+        queryParams = queryParams.append( 'page',1);
+
+         // Append the values to the queryParams
+        Object.keys(parameterValues).forEach((key:any) => {          
+            queryParams = queryParams.append(key, parameterValues[key]);
+            // console.log(queryParams);
+        });      
+        return this.http.get(`${this.url}/program`, {params:queryParams})
+    };
+
+    getProgramCourseDetails(params:any){
+        return this.http.get(`${this.url}/program/${params}`)
+    };
 
 }
